@@ -32,7 +32,6 @@ public class DetailActivity extends AppCompatActivity {
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweet"));
 
         Glide.with(this).load(tweet.user.publicImageURL).into(ivProfileImage);
-
         tvName.setText(tweet.user.name);
         tvScreenName.setText("@"+tweet.user.screenName);
         tvBody.setText(tweet.body);
