@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/ivProfileImage1"
-        android:layout_width="103dp"
-        android:layout_height="96dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -41,6 +41,7 @@
         android:layout_below="@+id/ivProfileImage1"
         android:layout_marginTop="10dp"
         android:textSize="25sp"
+        android:autoLink="all"
         tools:text="Body" />
 
     <TextView
