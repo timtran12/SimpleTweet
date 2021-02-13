@@ -1,11 +1,12 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
-import android.text.format.DateUtils;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import org.parceler.Parcels;
+
 import java.util.List;
-import java.util.Locale;
+
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
 
@@ -64,9 +65,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         TextView tvName;
         TextView tvTime;
+        RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.container);
             tvName = itemView.findViewById(R.id.tvName);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
@@ -74,35 +77,25 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvTime = itemView.findViewById(R.id.tvTime);
         }
 
-        public void bind(Tweet tweet) {
+        public void bind(final Tweet tweet) {
 
-            String relativeTime = getRelativeTime(tweet.createdAt);
-
-            tvTime.setText(relativeTime);
+            tvTime.setText(tweet.getRelativeTime(tweet.createdAt));
             tvName.setText(tweet.user.name);
             tvBody.setText(tweet.body);
             tvScreenName.setText("@"+tweet.user.screenName);
             Glide.with(context).load(tweet.user.publicImageURL).into(ivProfileImage);
 
-
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, DetailActivity.class);
+                    i.putExtra("tweet", Parcels.wrap(tweet));
+                    context.startActivity(i);
+                }
+            });
         }
     }
 
-    public String getRelativeTime(String rawDate){
-        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-        SimpleDateFormat date = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
-        String relativeDate = "";
-        date.setLenient(true);
 
-        try {
-            long dateMillis = date.parse(rawDate).getTime();
-            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_ABBREV_ALL).toString();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        relativeDate = relativeDate.substring(0, relativeDate.length()-7);
-
-        return relativeDate;
-    }
 
 }
