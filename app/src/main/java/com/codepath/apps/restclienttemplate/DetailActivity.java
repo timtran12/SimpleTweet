@@ -29,6 +29,7 @@ public class DetailActivity extends AppCompatActivity {
         tvScreenName = findViewById(R.id.tvScreenName);
         tvBody = findViewById(R.id.tvBody);
         tvTime = findViewById(R.id.tvTime);
+        ivProfileImage1 = findViewById(R.id.ivProfileImage1);
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweet"));
 
