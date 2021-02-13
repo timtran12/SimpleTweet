@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,7 +14,7 @@ import org.parceler.Parcels;
 
 public class DetailActivity extends AppCompatActivity {
 
-    ImageView ivProfileImage;
+    ImageView ivProfileImage1;
     TextView tvName;
     TextView tvScreenName;
     TextView tvBody;
@@ -31,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Tweet tweet = Parcels.unwrap(getIntent().getParcelableExtra("tweet"));
 
-        Glide.with(this).load(tweet.user.publicImageURL).into(ivProfileImage);
+        Glide.with(this).load(tweet.user.publicImageURL).into(ivProfileImage1);
         tvName.setText(tweet.user.name);
         tvScreenName.setText("@"+tweet.user.screenName);
         tvBody.setText(tweet.body);

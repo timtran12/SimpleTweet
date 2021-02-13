@@ -7,7 +7,7 @@
     tools:context=".DetailActivity">
 
     <ImageView
-        android:id="@+id/ivProfileImage"
+        android:id="@+id/ivProfileImage1"
         android:layout_width="103dp"
         android:layout_height="96dp"
         tools:srcCompat="@tools:sample/avatars" />
@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_toEndOf="@+id/ivProfileImage1"
         android:textSize="20sp"
         tools:text="Name" />
 
@@ -30,7 +30,7 @@
         android:layout_below="@+id/tvName"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_toEndOf="@+id/ivProfileImage1"
         android:textSize="15sp"
         tools:text="timtran12" />
 
@@ -38,7 +38,7 @@
         android:id="@+id/tvBody"
         android:layout_width="match_parent"
         android:layout_height="214dp"
-        android:layout_below="@+id/ivProfileImage"
+        android:layout_below="@+id/ivProfileImage1"
         android:layout_marginTop="10dp"
         android:textSize="25sp"
         tools:text="Body" />
